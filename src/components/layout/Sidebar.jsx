@@ -5,11 +5,12 @@ export default function Sidebar({ isOpen, toggleSidebar, setActivePage, activePa
 
   return (
     <aside
-      className={`fixed top-0 left-0 h-full w-64 bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white z-50 transform transition-transform duration-300
-        ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
-    >
+  className={`fixed top-0 left-0 h-full w-64 bg-[#E2E2DE] border-r-2 border-[#2A2529] text-gray-600 z-50 transform transition-transform duration-800
+  ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
+  style={{ borderBottomRightRadius: "200px" }} // <-- adjust here
+>
       {/* Sidebar header */}
-      <div className="flex items-center justify-between p-6 border-b border-gray-300 dark:border-gray-700">
+      <div className="flex items-center justify-between p-6 border-b border-gray-300 dark:border-gray-700 text-[#2A2529]">
         <span className="text-lg font-bold">Menu</span>
         <BurgerMenu onClick={toggleSidebar} isOpen={isOpen} />
       </div>
@@ -23,8 +24,8 @@ export default function Sidebar({ isOpen, toggleSidebar, setActivePage, activePa
             className={`p-3 cursor-pointer rounded-md transition-colors duration-200
               ${
                 activePage === item
-                  ? "bg-gray-300 dark:bg-gray-700 font-semibold"
-                  : "hover:bg-gray-200 dark:hover:bg-gray-800"
+                  ? "bg-[#2A2529] font-semibold"
+                  : "hover:bg-[#2A2529]"
               }`}
           >
             {item}

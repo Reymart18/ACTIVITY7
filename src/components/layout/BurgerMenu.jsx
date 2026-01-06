@@ -5,18 +5,18 @@ export default function BurgerMenu({ onClick, isOpen }) {
       onClick={onClick}
     >
       <span
-        className={`block h-1 w-full bg-white rounded transition-transform duration-300 ${
-          isOpen ? "rotate-45 translate-y-2" : ""
+        className={`block h-1 w-full rounded transition-transform duration-900 ${
+          isOpen ? "rotate-45 translate-y-2 bg-black" : "bg-white"
         }`}
       ></span>
       <span
-        className={`block h-1 w-full bg-white rounded transition-opacity duration-300 ${
-          isOpen ? "opacity-0" : "opacity-100"
+        className={`block h-1 w-full rounded transition-opacity duration-300 ${
+          isOpen ? "opacity-0 bg-black" : "opacity-100 bg-white"
         }`}
       ></span>
       <span
-        className={`block h-1 w-full bg-white rounded transition-transform duration-300 ${
-          isOpen ? "-rotate-45 -translate-y-2" : ""
+        className={`block h-1 w-full rounded transition-transform duration-900 ${
+          isOpen ? "-rotate-45 -translate-y-2 bg-black" : "bg-white"
         }`}
       ></span>
     </button>

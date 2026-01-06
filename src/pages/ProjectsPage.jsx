@@ -129,7 +129,7 @@ export default function ProjectsPage() {
           <div className="flex items-center gap-3">
             <button
               onClick={() => { setDrawerType("project"); setDrawerOpen(true); }}
-              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 transition-colors"
+              className="px-4 py-2 bg-[#4569AD] text-white rounded-md hover:bg-[#36538a] transition-colors"
             >
               + Add Project
             </button>

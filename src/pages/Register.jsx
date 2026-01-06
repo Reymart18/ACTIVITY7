@@ -33,8 +33,8 @@ export default function Register({ onRegister }) {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[#2A2529] to-[#F3F0E7]">
+      <div className="bg-white/20 backdrop-blur-md p-8 rounded-lg shadow-lg border-solid border-3 border-[#262424] w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
@@ -73,7 +73,7 @@ export default function Register({ onRegister }) {
 
           <button
             type="submit"
-            className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-500 transition-colors"
+            className="bg-[#2A2529] text-white px-4 py-2 rounded-md hover:bg-[#262E36] transition-colors"
           >
             Register
           </button>
@@ -82,7 +82,7 @@ export default function Register({ onRegister }) {
         <p className="mt-4 text-center text-gray-600">
           Already have an account?{" "}
           <span
-            className="text-blue-600 cursor-pointer hover:underline"
+            className="text-gray-900 cursor-pointer hover:underline"
             onClick={() => onRegister("login")}
           >
             Login

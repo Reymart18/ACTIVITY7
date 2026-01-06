@@ -60,15 +60,15 @@ export default function DashboardPage() {
 
       {/* Project Status Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-        <div className="p-4 rounded-lg shadow-md flex flex-col items-center bg-gradient-to-br from-emerald-500 to-emerald-600 text-white">
+        <div className="p-4 rounded-lg shadow-md flex flex-col items-center bg-[#799851] text-white">
           <span className="text-xl font-bold">{finished}</span>
           <span className="text-sm opacity-90">Finished Projects</span>
         </div>
-        <div className="p-4 rounded-lg shadow-md flex flex-col items-center bg-gradient-to-br from-amber-500 to-amber-600 text-white">
+        <div className="p-4 rounded-lg shadow-md flex flex-col items-center bg-[#FF8237] text-white">
           <span className="text-xl font-bold">{inProgress}</span>
           <span className="text-sm opacity-90">In Progress</span>
         </div>
-        <div className="p-4 rounded-lg shadow-md flex flex-col items-center bg-gradient-to-br from-rose-500 to-rose-600 text-white">
+        <div className="p-4 rounded-lg shadow-md flex flex-col items-center bg-[#cb4c46] text-white">
           <span className="text-xl font-bold">{unfinished}</span>
           <span className="text-sm opacity-90">Unfinished Projects</span>
         </div>

@@ -82,11 +82,11 @@ export default function Header({
   };
 
   return (
-    <header className="top-0 left-0 w-full flex items-center justify-between p-4 md:p-6 bg-black text-white z-40 shadow-md font-poppins">
+    <header className="top-0 left-0 w-full flex items-center justify-between p-4 md:p-6 bg-[#2A2529] text-white z-40 shadow-md font-poppins">
       {/* Left side: Burger + Title */}
       <div className="flex items-center">
         <BurgerMenu onClick={toggleMenu} isOpen={menuOpen} />
-        <h1 className="ml-4 text-lg md:text-xl font-bold tracking-wide">Project Manager</h1>
+        <h1 className="ml-4 text-lg md:text-xl font-bold tracking-wide">TaskRoom</h1>
       </div>
 
       {/* Right side: Notifications + Profile + Logout */}
