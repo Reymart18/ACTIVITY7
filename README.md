@@ -1,6 +1,10 @@
+# ACTIVITY 7
+
+## Installed Packages
+
+```bash
 npm i --save-dev @types/passport-jwt
 npm i @nestjs/platform-express multer @nestjs/serve-static
-npm i @nestjs/platform-express multer
 npm i -D @types/multer
 npm install @nestjs/jwt @nestjs/passport passport passport-jwt bcryptjs
 npm install -D tailwindcss postcss autoprefixer
