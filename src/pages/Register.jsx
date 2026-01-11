@@ -7,10 +7,12 @@ export default function Register({ onRegister }) {
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [error, setError] = useState("")
+  const [success, setSuccess] = useState("")
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError("")
+    setSuccess("")
 
     if (password !== confirmPassword) {
       setError("Passwords do not match")
@@ -18,15 +20,19 @@ export default function Register({ onRegister }) {
     }
 
     try {
-      const res = await axios.post("http://localhost:3000/auth/register", {
+      await axios.post("http://localhost:3000/auth/register", {
         name,
         email,
         password,
       })
 
-      const { user, token } = res.data
-      localStorage.setItem("token", token)
-      onRegister(user)
+      // Do NOT auto-login: no token storage
+      setSuccess("Registration successful! Please login to continue.")
+      // Optionally reset form fields
+      setName("")
+      setEmail("")
+      setPassword("")
+      setConfirmPassword("")
     } catch (err) {
       setError(err.response?.data?.message || "Registration failed")
     }
@@ -36,7 +42,10 @@ export default function Register({ onRegister }) {
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[#2A2529] to-[#F3F0E7]">
       <div className="bg-white/20 backdrop-blur-md p-8 rounded-lg shadow-lg border-solid border-3 border-[#262424] w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
+
         {error && <p className="text-red-500 mb-4">{error}</p>}
+        {success && <p className="text-green-500 mb-4">{success}</p>}
+
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <input
             type="text"
