@@ -9,6 +9,12 @@ export class Project {
   @Column()
   name!: string;
 
+  @Column({ nullable: true })
+  description?: string;
+
+  @Column({ type: 'date', nullable: true })
+  deadline?: string;
+
   @Column({ default: 0 })
   tasksPending!: number;
 

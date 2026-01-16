@@ -49,7 +49,7 @@ export class ProjectsService {
   async addTask(
     userId: number,
     projectId: number,
-    payload: { name: string; status?: TaskStatus; members?: number[] },
+    payload: { name: string; status?: TaskStatus; members?: number[]; deadline?: string },
   ): Promise<Project> {
     const project = await this.projectsRepository.findOne({ where: { id: projectId } });
     if (!project) throw new NotFoundException('Project not found');
@@ -69,6 +69,7 @@ export class ProjectsService {
       members,
       assignments: members.map((uid) => ({ userId: uid, status: 'pending' as const })),
       proofs: [], // [{ userId, url, createdAt }]
+      deadline: payload.deadline || null,
     };
 
     const tasks = Array.isArray(project.tasks) ? project.tasks : [];
@@ -276,5 +277,14 @@ export class ProjectsService {
     const merged = this.projectsRepository.merge(project, updated);
     recomputeProjectState(merged);
     return this.projectsRepository.save(merged);
+  }
+
+  async deleteProject(userId: number, projectId: number): Promise<{ message: string }> {
+    const project = await this.projectsRepository.findOne({ where: { id: projectId } });
+    if (!project) throw new NotFoundException('Project not found');
+    if (project.userId !== userId) throw new ForbiddenException('Only the project creator can delete it');
+
+    await this.projectsRepository.remove(project);
+    return { message: 'Project deleted successfully' };
   }
 }

@@ -1,6 +1,6 @@
 import {
   Controller, Get, Post, Body, UseGuards, Req, Put,
-  Param, ParseIntPipe, Patch, UseInterceptors, UploadedFile,
+  Param, ParseIntPipe, Patch, UseInterceptors, UploadedFile, Delete,
 } from '@nestjs/common'
 import {
   ApiTags, ApiOperation, ApiBearerAuth, ApiConsumes, ApiBody,
@@ -57,13 +57,14 @@ export class ProjectsController {
         name: { type: 'string' },
         status: { type: 'string', enum: ['Not started', 'In progress', 'Finished'] },
         members: { type: 'array', items: { type: 'number' } },
+        deadline: { type: 'string', format: 'date' },
       },
     },
   })
   addTask(
     @Req() req: any,
     @Param('id', ParseIntPipe) id: number,
-    @Body() body: { name: string; status?: 'Not started' | 'In progress' | 'Finished'; members?: number[] },
+    @Body() body: { name: string; status?: 'Not started' | 'In progress' | 'Finished'; members?: number[]; deadline?: string },
   ) {
     return this.projectsService.addTask(req.user.userId, id, body)
   }
@@ -165,5 +166,11 @@ export class ProjectsController {
   @ApiBody({ type: Project })
   update(@Req() req: any, @Param('id', ParseIntPipe) id: number, @Body() body: Partial<Project>) {
     return this.projectsService.updateForUser(req.user.userId, id, body)
+  }
+
+  @Delete(':id')
+  @ApiOperation({ summary: 'Delete a project' })
+  delete(@Req() req: any, @Param('id', ParseIntPipe) id: number) {
+    return this.projectsService.deleteProject(req.user.userId, id)
   }
 }

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Calendar, Clock } from "lucide-react";
 
 const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
@@ -123,6 +124,33 @@ export default function TaskList({ tasks = [], teamMembers = [], currentUser, on
                       )}
                     </button>
                   </div>
+
+                  {/* Task Deadline */}
+                  {task.deadline && (
+                    <div className="mt-2 flex items-center gap-1.5 text-xs">
+                      <Calendar className="w-3.5 h-3.5 text-purple-500" />
+                      <span className="text-gray-600">Due:</span>
+                      <span className="font-semibold text-purple-700">
+                        {new Date(task.deadline).toLocaleDateString('en-US', { 
+                          month: 'short', 
+                          day: 'numeric', 
+                          year: 'numeric' 
+                        })}
+                      </span>
+                      {(() => {
+                        const today = new Date();
+                        const deadline = new Date(task.deadline);
+                        const diffTime = deadline - today;
+                        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                        if (diffDays < 0) {
+                          return <span className="text-red-600 font-medium">(Overdue)</span>;
+                        } else if (diffDays <= 3) {
+                          return <span className="text-amber-600 font-medium">({diffDays} day{diffDays !== 1 ? 's' : ''} left)</span>;
+                        }
+                        return null;
+                      })()}
+                    </div>
+                  )}
 
                   {/* Members */}
                   {memberNames.length > 0 ? (
